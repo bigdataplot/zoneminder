@@ -28,7 +28,7 @@ The zmNinja Event Notification Server is accessed at port 9000.  Security with a
 Changes:
 
 2019-01-07 (Ken Ouyang)
-Forked, added Docker images to Dockerhub
+- Forked, added Docker images to Dockerhub
 
 2019-01-05
 - Update zmNinja Event Notification Server to version 2.6.
