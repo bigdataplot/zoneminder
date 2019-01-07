@@ -4,26 +4,31 @@ The configuration settings that are needed for this implementation of Zoneminder
 
 This verson will now upgrade from previous versions.
 
-To run Zoneminder on unRAID:
+To run Zoneminder on unRAID (Added Docker image to Dockerhub):
 
-docker run -d --name="Zoneminder" \
---net="bridge" \
---privileged="true" \
--p 8443:443/tcp \
--p 9000:9000/tcp \
--e TZ="America/New_York" \
--e SHMEM="50%" \
--e PUID="99" \
--e PGID="100" \
--v "/mnt/cache/appdata/Zoneminder":"/config":rw \
--v "/mnt/cache/appdata/Zoneminder/data":"/var/cache/zoneminder":rw \
-zoneminder
+```shell
+sudo docker run -d --name="Zoneminder" \
+    --net="bridge" \
+    --privileged="true" \
+    -p 443:443/tcp \
+    -p 9000:9000/tcp \
+    -e TZ="America/New_York" \
+    -e SHMEM="50%" \
+    -e PUID="99" \
+    -e PGID="100" \
+    -v "/mnt/cache/appdata/Zoneminder":"/config":rw \
+    -v "/mnt/cache/appdata/Zoneminder/data":"/var/cache/zoneminder":rw \
+    bigdataplot/zoneminder:latest
+```
 
 To access the Zoneminder gui: https://IP:8443/zm
 
 The zmNinja Event Notification Server is accessed at port 9000.  Security with a self signed certificate is enabled.  You may have to install the certificate on iOS devices for the event notification to work properly.
 
 Changes:
+
+2019-01-07 (Ken Ouyang)
+Forked, added Docker images to Dockerhub
 
 2019-01-05
 - Update zmNinja Event Notification Server to version 2.6.
