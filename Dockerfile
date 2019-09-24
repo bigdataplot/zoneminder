@@ -16,16 +16,19 @@ COPY defaults/ /root/
 COPY zmeventnotification/zmeventnotification.pl /usr/bin/
 COPY zmeventnotification/zmeventnotification.ini /root/
 
+RUN apt-get update && \
+	apt-get -y install software-properties-common wget
+
 RUN add-apt-repository -y ppa:iconnor/zoneminder-$ZM_VERS && \
 	add-apt-repository ppa:ondrej/php && \
 	apt-get update && \
 	apt-get -y upgrade -o Dpkg::Options::="--force-confold" && \
 	apt-get -y dist-upgrade && \
-	apt-get -y install apache2 mariadb-server && \
-	apt-get -y install ssmtp mailutils net-tools libav-tools wget sudo make && \
-	apt-get -y install php$PHP_VERS php$PHP_VERS-fpm libapache2-mod-php$PHP_VERS php$PHP_VERS-mysql php$PHP_VERS-gd && \
-	apt-get -y install libcrypt-mysql-perl libyaml-perl libjson-perl && \
-	apt-get -y install zoneminder
+	apt-get -y --allow-unauthenticated install apache2 mariadb-server && \
+	apt-get -y --allow-unauthenticated install ssmtp mailutils net-tools libav-tools wget sudo make && \
+	apt-get -y --allow-unauthenticated install php$PHP_VERS php$PHP_VERS-fpm libapache2-mod-php$PHP_VERS php$PHP_VERS-mysql php$PHP_VERS-gd && \
+	apt-get -y --allow-unauthenticated install libcrypt-mysql-perl libyaml-perl libjson-perl && \
+	apt-get -y --allow-unauthenticated install zoneminder
 
 RUN	rm /etc/mysql/my.cnf && \
 	cp /etc/mysql/mariadb.conf.d/50-server.cnf /etc/mysql/my.cnf && \
