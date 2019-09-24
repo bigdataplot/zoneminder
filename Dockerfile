@@ -1,4 +1,5 @@
-FROM dlandon/baseimage
+#FROM dlandon/baseimage
+FROM ubuntu:16.04
 
 LABEL maintainer="dlandon"
 
