@@ -20,8 +20,9 @@ RUN apt-get update && \
 	apt-get -y install software-properties-common wget
 
 RUN add-apt-repository -y ppa:iconnor/zoneminder-$ZM_VERS && \
-	add-apt-repository ppa:ondrej/php && \
-	apt-get update && \
+	add-apt-repository ppa:ondrej/php
+
+RUN	apt-get update && \
 	apt-get -y upgrade -o Dpkg::Options::="--force-confold" && \
 	apt-get -y dist-upgrade && \
 	apt-get -y --allow-unauthenticated install apache2 mariadb-server && \
